@@ -1,5 +1,4 @@
-provider "aws" {
-}
+provider "aws" { }
 
 resource "aws_s3_bucket" "remote_state" {
   bucket = "${var.bucket_remote_state}"
@@ -12,4 +11,16 @@ resource "aws_s3_bucket" "remote_state" {
   tags {
     "Provisioner" = "tf"
   }
+}
+
+output "bucket_remote_state" {
+  value = "${var.bucket_remote_state}"
+}
+
+output "az_count" {
+  value = "${var.az_count}"
+}
+
+output "az_names" {
+  value = "${var.az_names}"
 }
