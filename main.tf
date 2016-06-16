@@ -1,5 +1,7 @@
 provider "aws" { }
 
+variable "az_count" { }
+
 resource "aws_s3_bucket" "remote_state" {
   bucket = "${var.bucket_remote_state}"
   acl = "private"
