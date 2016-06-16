@@ -1,6 +1,6 @@
 provider "aws" { }
 
-variable "az_count" { }
+variable "az_names" { default = [] }
 
 resource "aws_s3_bucket" "remote_state" {
   bucket = "${var.bucket_remote_state}"
@@ -20,7 +20,7 @@ output "bucket_remote_state" {
 }
 
 output "az_count" {
-  value = "${var.az_count}"
+  value = "${length(var.az_names)}"
 }
 
 output "az_names" {
