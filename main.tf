@@ -1,5 +1,7 @@
 provider "aws" { }
 
+variable "account_id" {}
+variable "aws_region" {}
 variable "az_names" { default = [] }
 
 resource "aws_s3_bucket" "remote_state" {
@@ -17,6 +19,14 @@ resource "aws_s3_bucket" "remote_state" {
 
 output "bucket_remote_state" {
   value = "${var.bucket_remote_state}"
+}
+
+output "account_id" {
+  value = "${var.account_id}"
+}
+
+output "aws_region" {
+  value = "${var.aws_region}"
 }
 
 output "az_count" {
