@@ -3,6 +3,7 @@ provider "aws" { }
 variable "aws_account_id" {}
 variable "aws_region" {}
 variable "az_names" { default = [] }
+variable "vpc_domain" {}
 
 resource "aws_s3_bucket" "remote_state" {
   bucket = "${var.bucket_remote_state}"
@@ -15,6 +16,10 @@ resource "aws_s3_bucket" "remote_state" {
   tags {
     "Provisioner" = "tf"
   }
+}
+
+resource "aws_route53_zone" "domain" {
+  name = "${var.vpc_domain}"
 }
 
 output "bucket_remote_state" {
@@ -35,4 +40,16 @@ output "az_count" {
 
 output "az_names" {
   value = "${var.az_names}"
+}
+
+output "vpc_domain" {
+  value = "${var.vpc_domain}"
+}
+
+output "zone_id" {
+  value = "${aws_route53_zone.domain.zone_id}"
+}
+
+output "zone_name_servers" {
+  value = "${aws_route53_zone.domain.name_servers}"
 }
