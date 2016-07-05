@@ -4,6 +4,7 @@ variable "aws_account_id" {}
 variable "aws_region" {}
 variable "az_names" { default = [] }
 variable "vpc_domain" {}
+variable "public_key" {}
 
 resource "aws_s3_bucket" "remote_state" {
   bucket = "${var.bucket_remote_state}"
@@ -52,4 +53,8 @@ output "zone_id" {
 
 output "zone_name_servers" {
   value = "${aws_route53_zone.domain.name_servers}"
+}
+
+output "public_key" {
+  value = "${var.public_key}"
 }
